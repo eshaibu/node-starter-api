@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js --exec \"npm run lint:watch && babel-node\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev2": "nodemon --exec babel-node server/server.js",
+    "pretest": "export NODE_ENV=test && npm run lint:watch",
+    "test:api": "nyc --reporter=html mocha --opts ./src/test/utils/mocha.opts ./src/test/index.test.js --exit",
+    "test": "npm run test:api && nyc report",
     "lint:watch": "esw src",
     "lint:fix": "eslint 'src/**/*.js' --fix",
     "format": "prettier-eslint 'src/**/*.{js,json}' --write"
@@ -26,17 +29,24 @@
   "author": "Shaibu Emmanuel <emmagd4@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
     "@babel/node": "^7.2.2",
+    "@babel/polyfill": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
+    "@babel/register": "^7.4.0",
+    "chai": "^4.2.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-watch": "^5.0.1",
     "husky": "^1.3.1",
     "lint-staged": "^8.1.5",
+    "mocha": "^6.1.2",
     "nodemon": "^1.18.10",
-    "prettier-eslint-cli": "^4.7.1"
+    "nyc": "^13.3.0",
+    "prettier-eslint-cli": "^4.7.1",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

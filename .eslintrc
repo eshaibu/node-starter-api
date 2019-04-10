@@ -8,8 +8,9 @@
       "code": 80,
       "ignoreUrls": true
     }],
-    "comma-dangle": "off",
     "no-console": "off",
+    "comma-dangle": "off",
+    "consistent-return": "off",
     "valid-jsdoc": ["warn" , {
       "requireReturn": true,
       "requireReturnType": true,
